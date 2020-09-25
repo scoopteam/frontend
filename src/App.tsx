@@ -1,6 +1,7 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
 import NavBar from './components/NavBar';
+import Footer from "./components/Footer";
 
 import { Global, jsx, css } from "@emotion/core";
 
@@ -34,6 +35,7 @@ function App() {
       <div>
         <NavBar/>
         <LandingPage/>
+        <Footer/>
       </div>
     </div>
   );
