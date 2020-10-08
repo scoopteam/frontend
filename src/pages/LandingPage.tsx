@@ -40,7 +40,7 @@ const buttonStyles = css`
     
     font-size: 2em;
     color: white;
-    background-color: ${colours.buttonColor};
+    background-color: ${colours.metallicSeaweed};
     border-radius: 10px;
 
     font-family: "Alegreya Sans", Arial, Helvetica, sans-serif;
