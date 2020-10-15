@@ -8,6 +8,8 @@ import Wave from "react-wavify";
 import { useState } from "react";
 
 import Modal from "react-modal";
+import LoginForm from "../forms/LoginForm";
+import SignUpForm from "../forms/SignUpForm";
 
 const modalStyles = {
     content : {
@@ -79,7 +81,7 @@ function LandingPage() {
             style={modalStyles}
             closeTimeoutMS={400}
         >
-            <h1 css={{fontSize: "4em"}}>{formMode === "login" ? "Login" : "Sign up"}</h1>
+            <h1>{formMode === "login" ? <LoginForm showModal={setModalOpen}/> : <SignUpForm/>}</h1>
         </Modal>
 
         <div css={{ backgroundColor: colours.greenSheen }}>
