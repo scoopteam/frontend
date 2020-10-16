@@ -1,18 +1,25 @@
 /** @jsx jsx */
+import { useRef, useState } from "react";
 import { jsx } from "@emotion/core";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import colours from "../colours";
 import styles, { errorStyles } from "./formUtils";
 
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+
 
 export default function LoginForm(props: Record<string, any>) {
     let { showModal } = props;
 
+    let [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+    let captchaRef = useRef<any>(null);
+
     return <div css={{display: "flex", textAlign: "center", flexDirection: "column", width: "100%"}}>
         <h2>Welcome back</h2>
         <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ email: '', password: '', captcha: '' }}
             validate={values => {
                 const errors: Record<string, string> = {};
                 
@@ -27,10 +34,17 @@ export default function LoginForm(props: Record<string, any>) {
                 if (!values.password) {
                     errors["password"] = "Required"
                 }
+
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
+                if (!captchaToken) {
+                    captchaRef.current.execute();
+                    return;
+                }
+
                 setTimeout(() => {
+                    values["captcha"] = captchaToken!;
                     alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
                 }, 400);
@@ -44,6 +58,12 @@ export default function LoginForm(props: Record<string, any>) {
                     <label>Password</label>
                     <Field css={errorStyles(errors, touched, "password")} type="password" name="password" />
                     <ErrorMessage name="password" component="span" />
+                    <HCaptcha
+                        sitekey={process.env.HCAPTCHA_KEY!}
+                        ref={captchaRef}
+                        onVerify={token => setCaptchaToken(token)}
+                        onError={() => alert("Error occurred with HCaptcha, please reload the page.")}
+                    />
                     <button type="submit" disabled={isSubmitting}>
                         Login
                     </button>
