@@ -59,7 +59,7 @@ export default function LoginForm(props: Record<string, any>) {
                     <Field css={errorStyles(errors, touched, "password")} type="password" name="password" />
                     <ErrorMessage name="password" component="span" />
                     <HCaptcha
-                        sitekey={process.env.HCAPTCHA_KEY!}
+                        sitekey={process.env.REACT_APP_HCAPTCHA_KEY!}
                         ref={captchaRef}
                         onVerify={token => setCaptchaToken(token)}
                         onError={() => alert("Error occurred with HCaptcha, please reload the page.")}
