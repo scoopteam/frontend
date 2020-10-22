@@ -8,6 +8,8 @@ import styles, { errorStyles } from "./formUtils";
 
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 
+import env from "../env";
+
 
 export default function LoginForm(props: Record<string, any>) {
     let { showModal } = props;
@@ -22,7 +24,7 @@ export default function LoginForm(props: Record<string, any>) {
             initialValues={{ email: '', password: '', captcha: '' }}
             validate={values => {
                 const errors: Record<string, string> = {};
-                
+
                 if (!values.email) {
                     errors["email"] = 'Required';
                 } else if (
@@ -59,7 +61,7 @@ export default function LoginForm(props: Record<string, any>) {
                     <Field css={errorStyles(errors, touched, "password")} type="password" name="password" />
                     <ErrorMessage name="password" component="span" />
                     <HCaptcha
-                        sitekey={process.env.REACT_APP_HCAPTCHA_KEY!}
+                        sitekey={env.HCAPTCHA_KEY}
                         ref={captchaRef}
                         onVerify={token => setCaptchaToken(token)}
                         onError={() => alert("Error occurred with HCaptcha, please reload the page.")}
@@ -67,7 +69,7 @@ export default function LoginForm(props: Record<string, any>) {
                     <button type="submit" disabled={isSubmitting}>
                         Login
                     </button>
-                    <button css={{border: 'none', backgroundColor: colours.softRed + " !important", color: 'white', fontWeight: 900, paddingTop: "5px", paddingBottom: "5px"}} onClick={() => showModal(false)}>Cancel</button>
+                    <button type="button" css={{border: 'none', backgroundColor: colours.softRed + " !important", color: 'white', fontWeight: 900, paddingTop: "5px", paddingBottom: "5px"}} onClick={() => showModal(false)}>Cancel</button>
                 </Form>
             )}
         </Formik>
