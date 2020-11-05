@@ -39,7 +39,7 @@ const buttonStyles = css`
 
     padding-top: 10px;
     padding-bottom: 10px;
-    
+
     font-size: 2em;
     color: white;
     background-color: ${colours.metallicSeaweed};
@@ -81,7 +81,7 @@ function LandingPage() {
             style={modalStyles}
             closeTimeoutMS={400}
         >
-            <h1>{formMode === "login" ? <LoginForm showModal={setModalOpen}/> : <SignUpForm/>}</h1>
+            <h1>{formMode === "login" ? <LoginForm showModal={setModalOpen}/> : <SignUpForm showModal={setModalOpen}/>}</h1>
         </Modal>
 
         <div css={{ backgroundColor: colours.greenSheen }}>
