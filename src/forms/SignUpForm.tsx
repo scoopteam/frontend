@@ -81,7 +81,7 @@ export default function SignUpForm(props: Record<string, any>) {
                         onError={() => alert("Error occurred with HCaptcha, please reload the page.")}
                     />
                     <button type="submit" disabled={isSubmitting}>
-                        Login
+                        Sign Up
                     </button>
                     <button type="button" css={{border: 'none', backgroundColor: colours.softRed + " !important", color: 'white', fontWeight: 900, paddingTop: "5px", paddingBottom: "5px"}} onClick={() => showModal(false)}>Cancel</button>
                 </Form>
