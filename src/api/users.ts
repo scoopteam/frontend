@@ -1,7 +1,4 @@
-interface ServerResponse {
-    status: "okay" | "error",
-    message?: string
-}
+import { request, ServerResponse } from ".";
 
 interface CreateUserData {
     email: string,
@@ -12,7 +9,15 @@ interface CreateUserData {
 }
 
 export async function createUser(data: CreateUserData): Promise<ServerResponse> {
+    let resp = await request({
+      path: "/users",
+      method: "POST",
+      data: data
+    });
+
+    console.log(resp);
+
     return {
-        status: "okay"
+      status: "okay"
     }
 }

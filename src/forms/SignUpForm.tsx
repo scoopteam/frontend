@@ -21,7 +21,7 @@ export default function SignUpForm(props: Record<string, any>) {
     let captchaRef = useRef<any>(null);
 
     return <div css={{display: "flex", textAlign: "center", flexDirection: "column", width: "100%"}}>
-        <h2>Sign up for Swot</h2>
+        <h2>Sign up for Scoop</h2>
         <Formik
             initialValues={{ email: '', password: '', captcha: '', confirm_password: '', full_name: '' }}
             validate={values => {
