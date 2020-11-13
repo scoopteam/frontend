@@ -1,24 +1,20 @@
 /** @jsx jsx */
-import { useRef, useState } from "react";
+
 import { jsx } from "@emotion/core";
+
+import { useHistory } from "react-router-dom";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import colours from "../colours";
 import styles, { errorStyles } from "./formUtils";
 
 import { createUser } from "../api/users";
-
-import HCaptcha from '@hcaptcha/react-hcaptcha';
-
-import env from "../env";
+import { humanizeFieldName } from "../utils";
 
 
 export default function SignUpForm(props: Record<string, any>) {
     let { showModal } = props;
-
-    let [captchaToken, setCaptchaToken] = useState<string | null>(null);
-
-    let captchaRef = useRef<any>(null);
+    const history = useHistory();
 
     return <div css={{display: "flex", textAlign: "center", flexDirection: "column", width: "100%"}}>
         <h2>Sign up for Scoop</h2>
@@ -49,21 +45,30 @@ export default function SignUpForm(props: Record<string, any>) {
 
                 return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-                if (!captchaToken) {
-                    captchaRef.current.execute();
-                    return;
-                }
+            onSubmit={(values, { setSubmitting, setErrors }) => {
+              createUser(values).then(created => {
+                  console.log("success", created);
+                  history.push("/app")
+              }).catch(error => {
+                if (error.isAxiosError) {
+                  let errors: Record<string, string> = {};
 
-                createUser(values).then(created => {
-                    console.log(created);
-                })
+                  Object.keys(error.response.data.errors).forEach((field: string) => {
+                    errors[field] = humanizeFieldName(field) + " " + error.response.data.errors[field][0]
+                  })
+
+                  console.log(errors);
+
+                  setErrors(errors);
+                  setSubmitting(false);
+                }
+              })
             }}
             >
             {({ isSubmitting, errors, touched }) => (
                 <Form css={styles}>
                     <label>Full name</label>
-                    <Field css={errorStyles(errors, touched, "email")} type="text" name="full_name" />
+                    <Field css={errorStyles(errors, touched, "full_name")} type="text" name="full_name" />
                     <ErrorMessage name="full_name" component="span" />
                     <label>Email</label>
                     <Field css={errorStyles(errors, touched, "email")} type="email" name="email" />
@@ -74,12 +79,6 @@ export default function SignUpForm(props: Record<string, any>) {
                     <label>Confirm Password</label>
                     <Field css={errorStyles(errors, touched, "confirm_password")} type="password" name="confirm_password" />
                     <ErrorMessage name="confirm_password" component="span" />
-                    <HCaptcha
-                        sitekey={env.HCAPTCHA_KEY}
-                        ref={captchaRef}
-                        onVerify={token => setCaptchaToken(token)}
-                        onError={() => alert("Error occurred with HCaptcha, please reload the page.")}
-                    />
                     <button type="submit" disabled={isSubmitting}>
                         Sign Up
                     </button>
