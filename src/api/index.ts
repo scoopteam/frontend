@@ -1,10 +1,14 @@
 import axios from "axios";
 
+import userTokenStore from "../stores/token";
+
 const API_INDEX = process.env.NODE_ENV === "production" ? "https://scoop.gigalixirapp.com" : "http://localhost:4000";
 
 export interface ServerResponse {
     status: "okay" | "error",
-    message?: string
+    message?: string,
+    data?: Record<string, any>,
+    errors?: Record<string, any>
 }
 
 export interface RequestOptions {
@@ -19,6 +23,9 @@ export async function request(reqOption: RequestOptions): Promise<ServerResponse
           method: reqOption.method,
           url: API_INDEX + reqOption.path,
           data: reqOption.data ? reqOption.data : null,
+          headers: {
+            "Authorization": userTokenStore.getState();
+          }
       }).then(response => {
         resolve(response.data);
       }).catch(err => {

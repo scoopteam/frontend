@@ -11,6 +11,9 @@ import styles, { errorStyles } from "./formUtils";
 import { createUser } from "../api/users";
 import { humanizeFieldName } from "../utils";
 
+import { userTokenStore } from "../stores/token";
+import { SuccessResponse } from "../api";
+
 
 export default function SignUpForm(props: Record<string, any>) {
     let { showModal } = props;
@@ -47,7 +50,7 @@ export default function SignUpForm(props: Record<string, any>) {
             }}
             onSubmit={(values, { setSubmitting, setErrors }) => {
               createUser(values).then(created => {
-                  console.log("success", created);
+                  userTokenStore.dispatch({ type: 'token/set', payload: created.data!.token })
                   history.push("/app")
               }).catch(error => {
                 if (error.isAxiosError) {
