@@ -11,8 +11,7 @@ import styles, { errorStyles } from "./formUtils";
 import { createUser } from "../api/users";
 import { humanizeFieldName } from "../utils";
 
-import { userTokenStore } from "../stores/token";
-import { SuccessResponse } from "../api";
+import userTokenStore  from "../stores/token";
 
 
 export default function SignUpForm(props: Record<string, any>) {
