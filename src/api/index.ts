@@ -24,7 +24,7 @@ export async function request(reqOption: RequestOptions): Promise<ServerResponse
           url: API_INDEX + reqOption.path,
           data: reqOption.data ? reqOption.data : null,
           headers: {
-            "Authorization": userTokenStore.getState();
+            "Authorization": userTokenStore.getState()
           }
       }).then(response => {
         resolve(response.data);
