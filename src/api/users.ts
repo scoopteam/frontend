@@ -15,9 +15,5 @@ export async function createUser(data: CreateUserData): Promise<ServerResponse> 
       data: data
     });
 
-    console.log(resp);
-
-    return {
-      status: "okay"
-    }
+    return resp
 }

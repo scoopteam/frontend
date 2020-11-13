@@ -19,17 +19,10 @@ export async function request(reqOption: RequestOptions): Promise<ServerResponse
           method: reqOption.method,
           url: API_INDEX + reqOption.path,
           data: reqOption.data ? reqOption.data : null,
-          validateStatus: function (status) {
-            return status >= 200 && status < 500;
-          }
       }).then(response => {
         resolve(response.data);
       }).catch(err => {
-        if (!err.status) {
-          return reject(err);
-        }
-
-        resolve(err.response);
+        reject(err);
       })
     })
 }
