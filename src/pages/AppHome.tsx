@@ -3,6 +3,8 @@ import {jsx} from "@emotion/core";
 import { useState, useEffect } from "react";
 import { getCurrentUser } from "../api/users";
 
+import userTokenStore from "../stores/token";
+
 export default function AppHome() {
   const [user, setUser] = useState();
 
@@ -12,7 +14,7 @@ export default function AppHome() {
     }).catch(() => {
       setUser("error")
     })
-  })
+  }, [userTokenStore.getState().token])
 
   if (!user) {
     return <div>
