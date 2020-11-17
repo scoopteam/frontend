@@ -6,15 +6,18 @@ import Footer from "./components/Footer";
 import { Global, jsx } from "@emotion/core";
 
 import LandingPage from "./pages/LandingPage";
-import AppHome from "./pages/AppHome";
 
 import global from "./global";
+
+const AppHome = React.lazy(() => import("./pages/AppHome"));
 
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+import { Suspense } from 'react';
+import React from 'react';
 
 const ROUTES = [
   {
@@ -36,7 +39,9 @@ function App() {
         <Switch>
           {ROUTES.map(({Component, path}) => (
             <Route path={path} key={path} exact={true}>
-              <Component/>
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Component/>
+              </Suspense>
             </Route>
           ))}
         </Switch>
