@@ -59,8 +59,6 @@ export default function SignUpForm(props: Record<string, any>) {
                     errors[field] = humanizeFieldName(field) + " " + error.response.data.errors[field][0]
                   })
 
-                  console.log(errors);
-
                   setErrors(errors);
                   setSubmitting(false);
                 }
