@@ -19,4 +19,4 @@ function userTokenReducer(state: UserTokenState = { token: "" }, action: UserTok
   }
 }
 
-export default createStore(userTokenReducer);
+export default createStore(userTokenReducer, localStorage.token);
