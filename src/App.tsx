@@ -9,8 +9,6 @@ import LandingPage from "./pages/LandingPage";
 
 import global from "./global";
 
-const AppHome = React.lazy(() => import("./pages/AppHome"));
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +16,8 @@ import {
 } from "react-router-dom";
 import { Suspense } from 'react';
 import React from 'react';
+
+const AppHome = React.lazy(() => import("./pages/AppHome"));
 
 const ROUTES = [
   {
