@@ -35,7 +35,7 @@ export async function getCurrentUser() {
 }
 
 export async function loginuser(params: SignInData) {
-  let resp = await request({
+  await request({
     path: "/user/login",
     method: "POST",
   });
