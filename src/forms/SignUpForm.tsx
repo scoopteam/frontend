@@ -49,8 +49,11 @@ export default function SignUpForm(props: Record<string, any>) {
             }}
             onSubmit={(values, { setSubmitting, setErrors }) => {
               createUser(values).then(created => {
-                  userTokenStore.dispatch({ type: 'token/set', payload: created.data!.token })
-                  history.push("/app")
+                let unsubscribe = userTokenStore.subscribe(() => {
+                  history.push("/app");
+                  unsubscribe();
+                });
+                userTokenStore.dispatch({ type: 'token/set', payload: created.data!.token })
               }).catch(error => {
                 if (error.isAxiosError) {
                   let errors: Record<string, string> = {};
