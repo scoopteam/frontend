@@ -7,7 +7,7 @@ import { useQuery } from "react-query";
 import { ServerResponse } from "../api";
 
 export default function AppHome() {
-  const { isLoading, error, data } = useQuery<ServerRespose, Error>(
+  const { isLoading, error, data } = useQuery<ServerResponse, Error>(
     "userData",
     () => getCurrentUser()
   );
@@ -32,9 +32,17 @@ export default function AppHome() {
     );
   }
 
+  if (data) {
+    return (
+      <div>
+        <h1>Welcome {data!.data!.full_name}</h1>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h1>Welcome back {data!.data.full_name}</h1>
+      <h1>Received no information</h1>
     </div>
   );
 }
