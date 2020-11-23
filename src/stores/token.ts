@@ -1,22 +1,25 @@
-import { createStore } from 'redux';
+import { createStore } from "redux";
 
 interface UserTokenAction {
-  type: string,
-  payload: string
+  type: string;
+  payload: string;
 }
 
 interface UserTokenState {
-  token: string
+  token: string;
 }
 
-function userTokenReducer(state: UserTokenState = { token: "" }, action: UserTokenAction) {
+function userTokenReducer(
+  state: UserTokenState = { token: "" },
+  action: UserTokenAction
+) {
   switch (action.type) {
-    case 'token/set':
+    case "token/set":
       localStorage.token = action.payload;
-      return { token: action.payload }
+      return { token: action.payload };
     default:
-      return state
+      return state;
   }
 }
 
-export default createStore(userTokenReducer, localStorage.token);
+export default createStore(userTokenReducer, { token: localStorage.token });

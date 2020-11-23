@@ -1,28 +1,42 @@
 import { request, ServerResponse } from ".";
 
 interface CreateUserData {
-    email: string,
-    full_name: string,
-    password: string,
-    captcha: string,
-    confirm_password: string
+  email: string;
+  full_name: string;
+  password: string;
+  captcha: string;
+  confirm_password: string;
 }
 
-export async function createUser(data: CreateUserData): Promise<ServerResponse> {
-    let resp = await request({
-      path: "/user",
-      method: "POST",
-      data: data
-    });
+interface SignInData {
+  email: string;
+  password: string;
+}
 
-    return resp
+export async function createUser(
+  data: CreateUserData
+): Promise<ServerResponse> {
+  let resp = await request({
+    path: "/user",
+    method: "POST",
+    data: data,
+  });
+
+  return resp;
 }
 
 export async function getCurrentUser() {
   let resp = await request({
     path: "/user",
-    method: "GET"
+    method: "GET",
   });
 
-  return resp
+  return resp;
+}
+
+export async function loginuser(params: SignInData) {
+  let resp = await request({
+    path: "/user/login",
+    method: "POST",
+  });
 }
