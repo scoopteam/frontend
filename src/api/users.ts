@@ -25,7 +25,7 @@ export async function createUser(
   return resp;
 }
 
-export async function getCurrentUser() {
+export async function getCurrentUser(): Promise<ServerResponse> {
   let resp = await request({
     path: "/user",
     method: "GET",
@@ -34,9 +34,12 @@ export async function getCurrentUser() {
   return resp;
 }
 
-export async function loginuser(params: SignInData) {
-  await request({
+export async function loginUser(params: SignInData): Promise<ServerResponse> {
+  let resp = await request({
     path: "/user/login",
     method: "POST",
+    data: params,
   });
+
+  return resp;
 }

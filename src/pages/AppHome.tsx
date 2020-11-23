@@ -1,10 +1,15 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 import { getCurrentUser } from "../api/users";
 
 import { useQuery } from "react-query";
 
 import { ServerResponse } from "../api";
+
+const headerNameStyle = css`
+text-align: center;
+font-size: 3em;
+`
 
 export default function AppHome() {
   const { isLoading, error, data } = useQuery<ServerResponse, Error>(
@@ -15,7 +20,7 @@ export default function AppHome() {
   if (isLoading) {
     return (
       <div>
-        <h1>Loading...</h1>
+        <h1 css={headerNameStyle}>Loading...</h1>
       </div>
     );
   }
@@ -35,14 +40,14 @@ export default function AppHome() {
   if (data) {
     return (
       <div>
-        <h1>Welcome {data!.data!.full_name}</h1>
+        <h1 css={headerNameStyle}>Welcome back {data!.data!.full_name}</h1>
       </div>
     );
   }
 
   return (
     <div>
-      <h1>Received no information</h1>
+      <h1 css={headerNameStyle}>Received no information</h1>
     </div>
   );
 }
