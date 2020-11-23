@@ -31,7 +31,7 @@ export default function AppHome() {
 
   return (
     <div>
-      <h1>Welcome back {data.data.full_name}</h1>
+      <h1>Welcome back {data!.data.full_name}</h1>
     </div>
   );
 }
