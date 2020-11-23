@@ -4,9 +4,12 @@ import { getCurrentUser } from "../api/users";
 
 import { useQuery } from "react-query";
 
+import { ServerResponse } from "../api";
+
 export default function AppHome() {
-  const { isLoading, error, data } = useQuery("userData", () =>
-    getCurrentUser()
+  const { isLoading, error, data } = useQuery<ServerRespose, Error>(
+    "userData",
+    () => getCurrentUser()
   );
 
   if (isLoading) {
