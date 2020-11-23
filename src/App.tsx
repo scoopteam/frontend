@@ -25,7 +25,7 @@ const ROUTES = [
     Component: LandingPage,
   },
   {
-    path: "/app",
+    path: "/home",
     Component: AppHome,
   },
 ];

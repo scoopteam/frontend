@@ -7,16 +7,16 @@ export default css`
 display: flex;
 flex-direction: column;
 text-align: left;
-width: 50vw;
+width: 70vw;
 
 label {
-    font-size: 0.5em;
+    font-weight: bolder;
     padding-bottom: 0;
 }
 
 span {
-    font-size: 0.5em;
     color: ${colours.softRed};
+    font-weight: 900;
 };
 
 input, button {
@@ -36,7 +36,7 @@ button {
     padding-bottom: 5px;
     background-color: ${colours.metallicSeaweed};
     color: white;
-    font-size: 0.75em;
+    font-size: 1.5em;
     font-weight: 900;
 }
 `

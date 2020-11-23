@@ -24,7 +24,7 @@ export default function LoginForm(props: Record<string, any>) {
         width: "100%",
       }}
     >
-      <h2>Welcome back</h2>
+      <h1>Welcome back</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -48,7 +48,7 @@ export default function LoginForm(props: Record<string, any>) {
           loginUser(values)
             .then((token) => {
               let unsubscribe = userTokenStore.subscribe(() => {
-                history.push("/app");
+                history.push("/home");
                 unsubscribe();
               });
               userTokenStore.dispatch({

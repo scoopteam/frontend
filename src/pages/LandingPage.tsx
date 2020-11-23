@@ -81,7 +81,7 @@ function LandingPage() {
             style={modalStyles}
             closeTimeoutMS={400}
         >
-            <h1>{formMode === "login" ? <LoginForm showModal={setModalOpen}/> : <SignUpForm showModal={setModalOpen}/>}</h1>
+            <div>{formMode === "login" ? <LoginForm showModal={setModalOpen}/> : <SignUpForm showModal={setModalOpen}/>}</div>
         </Modal>
 
         <div css={{ backgroundColor: colours.greenSheen }}>
