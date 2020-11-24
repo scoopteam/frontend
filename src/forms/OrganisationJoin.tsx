@@ -6,7 +6,6 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import styles, { errorStyles } from "./formUtils";
 
 import { joinOrganisation } from "../api/organisation";
-import { humanizeFieldName } from "../utils";
 
 
 export default function OrgJoinForm(props: Record<string, any>) {
