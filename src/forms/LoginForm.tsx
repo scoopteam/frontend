@@ -10,7 +10,10 @@ import userTokenStore from "../stores/token";
 import { useHistory } from "react-router-dom";
 import { humanizeFieldName } from "../utils";
 
+import { useQueryCache } from "react-query"
+
 export default function LoginForm(props: Record<string, any>) {
+  const queryCache = useQueryCache();
   let { showModal } = props;
 
   let history = useHistory();
@@ -49,6 +52,7 @@ export default function LoginForm(props: Record<string, any>) {
             .then((token) => {
               let unsubscribe = userTokenStore.subscribe(() => {
                 history.push("/home");
+                queryCache.invalidateQueries("userData");
                 unsubscribe();
               });
               userTokenStore.dispatch({

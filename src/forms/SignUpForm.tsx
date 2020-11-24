@@ -13,8 +13,11 @@ import { humanizeFieldName } from "../utils";
 
 import userTokenStore from "../stores/token";
 
+import { useQueryCache } from "react-query";
+
 
 export default function SignUpForm(props: Record<string, any>) {
+    const queryCache = useQueryCache();
     let { showModal } = props;
     const history = useHistory();
 
@@ -51,6 +54,7 @@ export default function SignUpForm(props: Record<string, any>) {
                 createUser(values).then(created => {
                     let unsubscribe = userTokenStore.subscribe(() => {
                         history.push("/home");
+                        queryCache.invalidateQueries("userData");
                         unsubscribe();
                     });
                     userTokenStore.dispatch({ type: 'token/set', payload: created.data!.token })
