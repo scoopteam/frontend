@@ -67,7 +67,7 @@ export default function UserOrganisations() {
                         <OrgListing orgMembership={orgMembership} />
                     ))}
                     <div css={listingStyle}>
-                        <h1>Join organisation</h1>
+                    <Link to="/orgs/join" css={{color: "white"}}><h1>Join organisation</h1></Link>
                     </div>
                     <div css={listingStyle}>
                         <Link to="/orgs/new" css={{color: "white"}}><h1>Create organisation</h1></Link>
