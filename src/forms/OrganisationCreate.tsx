@@ -23,7 +23,7 @@ export default function NewOrgForm(props: Record<string, any>) {
             justify-content: center;
         }
     `}>
-        <h2>Sign up for Scoop</h2>
+        <h2>Create a new organisation</h2>
         <Formik
             initialValues={{ name: '' }}
             validate={values => {
