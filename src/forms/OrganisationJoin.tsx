@@ -2,6 +2,8 @@
 import { useHistory } from "react-router-dom";
 import { jsx, css } from "@emotion/core";
 
+import { useQueryCache } from "react-query";
+
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import styles, { errorStyles } from "./formUtils";
 
@@ -10,6 +12,7 @@ import { joinOrganisation } from "../api/organisation";
 
 export default function OrgJoinForm(props: Record<string, any>) {
     const history = useHistory();
+    const queryCache = useQueryCache();
 
     return <div css={css`
         display: flex;
@@ -36,6 +39,7 @@ export default function OrgJoinForm(props: Record<string, any>) {
             }}
             onSubmit={(values, { setSubmitting, setErrors }) => {
                 joinOrganisation(values.code).then(() => {
+                    queryCache.invalidateQueries("userOrganisations")
                     history.push(`/orgs`);
                 }).catch(error => {
                     if (error.isAxiosError) {
