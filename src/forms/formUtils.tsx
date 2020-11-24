@@ -29,6 +29,7 @@ input {
     padding: 10px;
     transition: box-shadow 500ms linear;
     outline: none;
+    background-color: ${colours.lightGrey};
 }
 
 button {
