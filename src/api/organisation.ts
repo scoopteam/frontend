@@ -34,3 +34,15 @@ export async function getUserOrganisations(): Promise<ServerResponse> {
 
     return resp;
 }
+
+export async function joinOrganisation(code: string): Promise<ServerResponse> {
+    let resp = await request({
+        path: "/org/join",
+        method: "POST",
+        data: {
+            code,
+        }
+    });
+
+    return resp;
+}
