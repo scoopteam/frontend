@@ -47,3 +47,21 @@ export async function joinOrganisation(code: string): Promise<ServerResponse> {
 
     return resp;
 }
+
+export async function getOrganisation(id: string): Promise<ServerResponse> {
+    let resp = await request({
+        path: `/org/${id}`,
+        method: "GET"
+    });
+
+    return resp;
+}
+
+export async function deleteOrLeaveOrganisation(id: string): Promise<ServerResponse> {
+    let resp = await request({
+        path: `/org/${id}`,
+        method: "DELETE"
+    });
+
+    return resp;
+}

@@ -76,7 +76,9 @@ export default function UserOrganisations() {
                     flex-direction: column;
                 `}>
                     {data.data!.map((orgMembership: UserOrg) => (
-                        <OrgListing orgMembership={orgMembership} key={orgMembership.org.id} />
+                        <Link to={`/orgs/${orgMembership.org.id}`} css={{color: "white"}}>
+                            <OrgListing orgMembership={orgMembership} key={orgMembership.org.id} />
+                        </Link>
                     ))}
                     <div css={listingStyle}>
                     <Link to="/orgs/join" css={{color: "white"}}><h1 css={linkStyle}>Join organisation</h1></Link>

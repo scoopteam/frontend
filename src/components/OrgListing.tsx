@@ -17,6 +17,10 @@ export default function OrgListing({ orgMembership }: { orgMembership: UserOrg }
             filter: brightness(90%);
             transform: scale(99%);
         }
+
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin: 20px;
     `}>
         <h1>{orgMembership.org.name}</h1>
     </div>

@@ -21,6 +21,7 @@ const AppHome = React.lazy(() => import("./pages/AppHome"));
 const NewOrg = React.lazy(() => import("./pages/organisations/NewOrganisation"));
 const UserOrganisations = React.lazy(() => import("./pages/organisations/UserOrganisations"));
 const OrganisationJoin = React.lazy(() => import("./pages/organisations/OrganisationJoin"));
+const DisplayOrganisation = React.lazy(() => import("./pages/organisations/DisplayOrganisation"));
 
 const ROUTES = [
   {
@@ -42,28 +43,34 @@ const ROUTES = [
   {
     path: "/orgs/join",
     Component: OrganisationJoin
+  },
+  {
+    path: "/orgs/:id",
+    Component: DisplayOrganisation
   }
 ];
 
 function App() {
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
-      <div>
         <Global styles={global} />
         <Router>
           <NavBar />
-          <Switch>
-            {ROUTES.map(({ Component, path }) => (
-              <Route path={path} key={path} exact={true}>
-                <Suspense fallback={<h1 css={{textAlign: "center"}}>Loading...</h1>}>
-                  <Component />
-                </Suspense>
-              </Route>
-            ))}
-          </Switch>
-          <Footer />
+          <div css={{ flex: "1 0 auto" }}>
+            <Switch>
+              {ROUTES.map(({ Component, path }) => (
+                <Route path={path} key={path} exact={true}>
+                  <Suspense fallback={<h1 css={{ textAlign: "center" }}>Loading...</h1>}>
+                    <Component />
+                  </Suspense>
+                </Route>
+              ))}
+            </Switch>
+          </div>
+          <div css={{ flexShrink: 0 }}>
+            <Footer />
+          </div>
         </Router>
-      </div>
     </ReactQueryCacheProvider>
   );
 }
