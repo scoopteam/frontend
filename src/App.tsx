@@ -18,6 +18,8 @@ import React from "react";
 const queryCache = new QueryCache();
 
 const AppHome = React.lazy(() => import("./pages/AppHome"));
+const NewOrg = React.lazy(() => import("./pages/NewOrganisation"));
+const UserOrganisations = React.lazy(() => import("./pages/UserOrganisations"));
 
 const ROUTES = [
   {
@@ -28,6 +30,14 @@ const ROUTES = [
     path: "/home",
     Component: AppHome,
   },
+  {
+    path: "/orgs/new",
+    Component: NewOrg
+  },
+  {
+    path: "/orgs",
+    Component: UserOrganisations
+  }
 ];
 
 function App() {
@@ -40,7 +50,7 @@ function App() {
           <Switch>
             {ROUTES.map(({ Component, path }) => (
               <Route path={path} key={path} exact={true}>
-                <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<h1 css={{textAlign: "center"}}>Loading...</h1>}>
                   <Component />
                 </Suspense>
               </Route>
