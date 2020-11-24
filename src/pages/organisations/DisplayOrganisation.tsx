@@ -44,21 +44,24 @@ export default function DisplayOrganisation() {
         `}>
             <h1 css={{fontSize: "3em"}}>{data!.data!.org.name}</h1>
             {data!.data!.org.code ? 
-                <span css={css`
-                    * {
-                        display: inline;
-                        vertical-align: middle;
-                        font-size: 2em;
-                    }
+                <div>
+                    <span css={css`
+                        * {
+                            display: inline;
+                            vertical-align: middle;
+                            font-size: 2em;
+                        }
 
-                    pre {
-                        background-color: ${colours.lightGrey};
-                        padding: 5px;
-                    }
-                `}>
-                    <p>Join code is </p>
-                    <pre css={{fontSize: "3em"}}>{data!.data!.org.code}</pre>
-                </span>
+                        pre {
+                            background-color: ${colours.lightGrey};
+                            padding: 5px;
+                        }
+                    `}>
+                        <p>Join code is </p>
+                        <pre css={{fontSize: "3em"}}>{data!.data!.org.code}</pre>
+                    </span>
+                    <h2>{data!.data!.org.member_count} member{data!.data!.org.member_count === 1 ? "" : "s"}</h2>
+                </div>
             : null}
 
 
