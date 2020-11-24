@@ -12,19 +12,31 @@ import { Link } from "react-router-dom";
 
 const listingStyle = css`
 background-color: ${colours.greenSheen};
-margin: 20px;
+margin-left: 20px;
+margin-right: 20px;
+margin-top: 20px;
+margin-bottom: 20px;
 color: white;
 border-radius: 10px;
-transition: filter 100ms;
+transition: filter, transform 100ms;
 
 &:hover {
     filter: brightness(90%);
+    transform: scale(99%);
 }
 `;
+
+const linkStyle = css`
+padding-top: 20px;
+padding-bottom: 20px;
+margin: 0;
+`
 
 const headerNameStyle = css`
 text-align: center;
 font-size: 3em;
+margin: 0;
+margin-top: 20px;
 `
 
 export default function UserOrganisations() {
@@ -67,10 +79,10 @@ export default function UserOrganisations() {
                         <OrgListing orgMembership={orgMembership} key={orgMembership.org.id} />
                     ))}
                     <div css={listingStyle}>
-                    <Link to="/orgs/join" css={{color: "white"}}><h1>Join organisation</h1></Link>
+                    <Link to="/orgs/join" css={{color: "white"}}><h1 css={linkStyle}>Join organisation</h1></Link>
                     </div>
                     <div css={listingStyle}>
-                        <Link to="/orgs/new" css={{color: "white"}}><h1>Create organisation</h1></Link>
+                        <Link to="/orgs/new" css={{color: "white"}}><h1 css={linkStyle}>Create organisation</h1></Link>
                     </div>
                 </div>
             </div>
