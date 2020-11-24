@@ -35,7 +35,7 @@ margin-right: 50px;
 
 function LoggedInItems() {
     return <React.Fragment>
-        <h2 css={rightNavItem}>My feed</h2>
+        <Link css={rightNavItem} to={"/home"}><h2>My feed</h2></Link>
         <Link css={rightNavItem} to={"/orgs"}><h2>Organisations</h2></Link>
     </React.Fragment>
 }
