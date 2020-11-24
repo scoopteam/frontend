@@ -10,11 +10,16 @@ import { ServerResponse } from "../api";
 import colours from "../colours";
 import { Link } from "react-router-dom";
 
-const titleStyle = css`
+const leftNavItem = css`
 color: white;
 padding: 0;
 margin: 0;
 margin-left: 20px;
+font-size: 1.5em;
+
+&:hover {
+    text-decoration: none;
+}
 `;
 
 const dividerStyle = css`
@@ -60,7 +65,7 @@ function NavBar() {
             vertical-align: middle;
         }
     `}>
-        <h1 css={titleStyle}>Scoop</h1>
+        <Link css={leftNavItem} to={"/"}><h1 css={{padding: 0, margin: 0}}>Scoop</h1></Link>
         <span css={dividerStyle}></span>
         {renderLoggedIn ? <LoggedInItems /> : null}
     </div>
