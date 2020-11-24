@@ -86,6 +86,7 @@ export default function LoginForm(props: Record<string, any>) {
               css={errorStyles(errors, touched, "email")}
               type="email"
               name="email"
+              placeholder="joe@scoop.com"
             />
             <ErrorMessage name="email" component="span" />
             <label>Password</label>
@@ -93,6 +94,7 @@ export default function LoginForm(props: Record<string, any>) {
               css={errorStyles(errors, touched, "password")}
               type="password"
               name="password"
+              placeholder="SuperSecret123..."
             />
             <ErrorMessage name="password" component="span" />
             <button type="submit" disabled={isSubmitting}>

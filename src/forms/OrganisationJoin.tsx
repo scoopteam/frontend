@@ -55,7 +55,7 @@ export default function OrgJoinForm(props: Record<string, any>) {
                 <div>
                     <Form css={styles}>
                         <label>Organisation code</label>
-                        <Field css={errorStyles(errors, touched, "code")} type="text" name="code" />
+                        <Field css={errorStyles(errors, touched, "code")} type="text" name="code" placeholder="Enter code..." />
                         <ErrorMessage name="code" component="span" />
                         <button type="submit" disabled={isSubmitting}>
                             Join organisation

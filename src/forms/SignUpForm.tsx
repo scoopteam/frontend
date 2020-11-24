@@ -75,16 +75,16 @@ export default function SignUpForm(props: Record<string, any>) {
             {({ isSubmitting, errors, touched }) => (
                 <Form css={styles}>
                     <label>Full name</label>
-                    <Field css={errorStyles(errors, touched, "full_name")} type="text" name="full_name" />
+                    <Field css={errorStyles(errors, touched, "full_name")} type="text" name="full_name" placeholder="Joe Banks" />
                     <ErrorMessage name="full_name" component="span" />
                     <label>Email</label>
-                    <Field css={errorStyles(errors, touched, "email")} type="email" name="email" />
+                    <Field css={errorStyles(errors, touched, "email")} type="email" name="email" placeholder="joe@scoop.com" />
                     <ErrorMessage name="email" component="span" />
                     <label>Password</label>
-                    <Field css={errorStyles(errors, touched, "password")} type="password" name="password" />
+                    <Field css={errorStyles(errors, touched, "password")} type="password" name="password" placeholder="SuperSecure123" />
                     <ErrorMessage name="password" component="span" />
                     <label>Confirm Password</label>
-                    <Field css={errorStyles(errors, touched, "confirm_password")} type="password" name="confirm_password" />
+                    <Field css={errorStyles(errors, touched, "confirm_password")} type="password" name="confirm_password" placeholder="SuperSecure123" />
                     <ErrorMessage name="confirm_password" component="span" />
                     <button type="submit" disabled={isSubmitting}>
                         Sign Up

@@ -56,7 +56,7 @@ export default function NewOrgForm(props: Record<string, any>) {
                 <div>
                     <Form css={styles}>
                         <label>Organisation name</label>
-                        <Field css={errorStyles(errors, touched, "name")} type="text" name="name" />
+                        <Field css={errorStyles(errors, touched, "name")} type="text" name="name" placeholder="My Sweet Org!" />
                         <ErrorMessage name="name" component="span" />
                         <button type="submit" disabled={isSubmitting}>
                             Create organisation
