@@ -20,6 +20,7 @@ const queryCache = new QueryCache();
 const AppHome = React.lazy(() => import("./pages/AppHome"));
 const NewOrg = React.lazy(() => import("./pages/NewOrganisation"));
 const UserOrganisations = React.lazy(() => import("./pages/UserOrganisations"));
+const OrganisationJoin = React.lazy(() => import("./pages/OrganisationJoin"));
 
 const ROUTES = [
   {
@@ -37,6 +38,10 @@ const ROUTES = [
   {
     path: "/orgs",
     Component: UserOrganisations
+  },
+  {
+    path: "/orgs/join",
+    Component: OrganisationJoin
   }
 ];
 
