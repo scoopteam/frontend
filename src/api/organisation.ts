@@ -10,6 +10,7 @@ export interface UserOrg {
 }
 
 interface Organisation {
+    id: number,
     name: string,
     code?: string
 }
