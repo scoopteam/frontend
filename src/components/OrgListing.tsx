@@ -11,10 +11,11 @@ export default function OrgListing({ orgMembership }: { orgMembership: UserOrg }
         margin: 20px;
         color: white;
         border-radius: 10px;
-        transition: filter 100ms;
+        transition: filter, transform 100ms;
 
         &:hover {
             filter: brightness(90%);
+            transform: scale(99%);
         }
     `}>
         <h1>{orgMembership.org.name}</h1>
