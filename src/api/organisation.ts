@@ -1,4 +1,3 @@
-import { Server } from "http";
 import { request, ServerResponse } from ".";
 
 interface CreateOrgData {
