@@ -3,11 +3,11 @@ import { jsx, css } from "@emotion/core";
 
 import { useQuery } from "react-query";
 
-import { ServerResponse } from "../api";
-import { getUserOrganisations, UserOrg } from "../api/organisation";
-import OrgListing from "../components/OrgListing";
+import { ServerResponse } from "../../api";
+import { getUserOrganisations, UserOrg } from "../../api/organisation";
+import OrgListing from "../../components/OrgListing";
 
-import colours from "../colours";
+import colours from "../../colours";
 import { Link } from "react-router-dom";
 
 const listingStyle = css`

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import NewOrgForm from "../forms/OrganisationCreate";
+import NewOrgForm from "../../forms/OrganisationCreate";
 
 export default function NewOrg() {
     return (

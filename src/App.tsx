@@ -18,9 +18,9 @@ import React from "react";
 const queryCache = new QueryCache();
 
 const AppHome = React.lazy(() => import("./pages/AppHome"));
-const NewOrg = React.lazy(() => import("./pages/NewOrganisation"));
-const UserOrganisations = React.lazy(() => import("./pages/UserOrganisations"));
-const OrganisationJoin = React.lazy(() => import("./pages/OrganisationJoin"));
+const NewOrg = React.lazy(() => import("./pages/organisations/NewOrganisation"));
+const UserOrganisations = React.lazy(() => import("./pages/organisations/UserOrganisations"));
+const OrganisationJoin = React.lazy(() => import("./pages/organisations/OrganisationJoin"));
 
 const ROUTES = [
   {
