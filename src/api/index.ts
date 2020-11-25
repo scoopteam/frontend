@@ -2,7 +2,7 @@ import axios from "axios";
 
 import userTokenStore from "../stores/token";
 
-const API_INDEX = process.env.NODE_ENV === "production" ? "https://scoop.gigalixirapp.com" : "http://localhost:4000";
+const API_INDEX = process.env.NODE_ENV === "production" ? "https://api.myscoop.dev" : "http://localhost:4000";
 
 export interface ServerResponse {
     status: "okay" | "error",
