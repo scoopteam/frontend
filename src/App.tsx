@@ -24,6 +24,7 @@ const OrganisationJoin = React.lazy(() => import("./pages/organisations/Organisa
 const DisplayOrganisation = React.lazy(() => import("./pages/organisations/DisplayOrganisation"));
 const NewGroup = React.lazy(() => import("./pages/organisations/groups/NewGroup"));
 const GroupList = React.lazy(() => import("./pages/organisations/groups/GroupList"));
+const DisplayGroup = React.lazy(() => import("./pages/organisations/groups/GroupDisplay"));
 
 const ROUTES = [
   {
@@ -57,6 +58,10 @@ const ROUTES = [
   {
     path: "/orgs/:org_id/groups",
     Component: GroupList
+  },
+  {
+    path: "/orgs/:organisation_id/groups/:group_id",
+    Component: DisplayGroup
   }
 ];
 
