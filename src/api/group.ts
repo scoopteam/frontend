@@ -1,4 +1,3 @@
-import { getgroups } from "process";
 import { request, ServerResponse } from ".";
 
 interface CreateGroupData {
@@ -24,7 +23,7 @@ export async function getAllGroups(
     orgID: string
 ): Promise<ServerResponse> {
     let resp = await request({
-        path: `/org/${orgID}/group/all`,
+        path: `/org/${orgID}/group`,
         method: "GET"
     });
 

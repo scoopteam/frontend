@@ -41,8 +41,9 @@ export default function NewOrgForm(props: Record<string, any>) {
             }}
             onSubmit={(values, { setSubmitting, setErrors }) => {
                 createGroup(org_id, values).then(created => {
-                    queryCache.invalidateQueries("userGroups")
-                    history.push(`/orgs`);
+                    queryCache.invalidateQueries(`organisation-groups-${org_id}`).then(() => {
+                        history.push(`/orgs/${org_id}/groups`);
+                    });
                 }).catch(error => {
                     if (error.isAxiosError) {
                         let errors: Record<string, string> = {};
@@ -64,7 +65,7 @@ export default function NewOrgForm(props: Record<string, any>) {
                         <Field css={errorStyles(errors, touched, "name")} type="text" name="name" placeholder="Cooking club..." />
                         <ErrorMessage name="name" component="span" />
 
-                        <label>Public group (can anyone in the organisation join)</label>
+                        <label>Public group (joinable by anyone inside the organisation)</label>
                         <Field css={errorStyles(errors, touched, "public")} component={CheckToggle} name="public" />
                         <ErrorMessage name="public" component="span" />
 
@@ -73,7 +74,7 @@ export default function NewOrgForm(props: Record<string, any>) {
                         <ErrorMessage name="auto_subscribe" component="span" />
 
                         <button type="submit" disabled={isSubmitting}>
-                            Create organisation
+                            Create group
                         </button>
                     </Form>
                 </div>

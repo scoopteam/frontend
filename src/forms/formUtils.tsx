@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { FormikErrors, FormikTouched, Field, Formik } from "formik";
+import { FormikErrors, FormikTouched, Field } from "formik";
 
 import Toggle from "react-toggle";
 import "react-toggle/style.css";
@@ -65,5 +65,5 @@ export function errorStyles(errors: FormikErrors<Record<string, string>>, touche
 }
 
 export function CheckToggle({ field, form, ...props}: { field: typeof Field, form: Record<any, any> }) {
-    return <Toggle css={{alignSelf: "center"}} name={field.name} onChange={(e) => form.setFieldValue(field.name, e.target.checked)}/>
+    return <Toggle css={{alignSelf: "center", margin: "10px"}} name={field.name} onChange={(e) => form.setFieldValue(field.name, e.target.checked)}/>
 }

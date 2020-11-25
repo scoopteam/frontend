@@ -14,7 +14,6 @@ import global from "./global";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Suspense } from "react";
 import React from "react";
-import NewGroup from "./pages/organisations/groups/NewGroup";
 
 const queryCache = new QueryCache();
 
@@ -23,6 +22,8 @@ const NewOrg = React.lazy(() => import("./pages/organisations/NewOrganisation"))
 const UserOrganisations = React.lazy(() => import("./pages/organisations/UserOrganisations"));
 const OrganisationJoin = React.lazy(() => import("./pages/organisations/OrganisationJoin"));
 const DisplayOrganisation = React.lazy(() => import("./pages/organisations/DisplayOrganisation"));
+const NewGroup = React.lazy(() => import("./pages/organisations/groups/NewGroup"));
+const GroupList = React.lazy(() => import("./pages/organisations/groups/GroupList"));
 
 const ROUTES = [
   {
@@ -52,6 +53,10 @@ const ROUTES = [
   {
     path: "/orgs/:org_id/groups/new",
     Component: NewGroup
+  },
+  {
+    path: "/orgs/:org_id/groups",
+    Component: GroupList
   }
 ];
 
