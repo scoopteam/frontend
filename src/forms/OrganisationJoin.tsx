@@ -25,7 +25,7 @@ export default function OrgJoinForm(props: Record<string, any>) {
             justify-content: center;
         }
     `}>
-        <h2>Join an organisation</h2>
+        <h1>Join an organisation</h1>
         <Formik
             initialValues={{ code: '' }}
             validate={values => {

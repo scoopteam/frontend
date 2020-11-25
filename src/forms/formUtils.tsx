@@ -16,6 +16,7 @@ width: 70vw;
 label {
     font-weight: bolder;
     padding-bottom: 0;
+    font-size: 1.25em;
 }
 
 span {
@@ -33,6 +34,7 @@ input {
     padding: 10px;
     transition: box-shadow 500ms linear;
     outline: none;
+    font-size: 1.5em;
     background-color: ${colours.lightGrey};
 }
 

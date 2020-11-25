@@ -27,7 +27,7 @@ export default function NewOrgForm(props: Record<string, any>) {
             justify-content: center;
         }
     `}>
-        <h2>Create a new group</h2>
+        <h1>Create a new group</h1>
         <Formik
             initialValues={{ name: '', public: false, auto_subscribe: false }}
             validate={values => {
