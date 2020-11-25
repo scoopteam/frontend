@@ -47,6 +47,8 @@ export default function OrgJoinForm(props: Record<string, any>) {
 
                         if (error.response.data.errors.org_id) {
                             errors["code"] = "You've already joined this organisation"
+                        } else {
+                            errors["code"] = "Code not found"
                         }
 
                         setErrors(errors);
