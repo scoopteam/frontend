@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/core";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import { ServerResponse } from "../../../api";
 import { getAllGroups } from "../../../api/group";
@@ -30,10 +30,20 @@ vertical-align: middle;
 * {
     vertical-align: middle;
 }
+
+text-decoration: none;
+transition: filter, transform 100ms;
+color: black;
+
+&:hover {
+    text-decoration: none;
+    filter: brightness(95%);
+    transform: scale(98%);
+}
 `;
 
 const searchBar = css`
-border: 1px solid black;
+border: 1px solid #A7A7A7;
 border-radius: 30px;
 padding-left: 20px;
 padding-top: 10px;
@@ -68,15 +78,19 @@ export default function GroupList() {
 
     const [orgData, groupData] = data!;
 
+    const hasPerm = orgData!.data!.permissions.indexOf("owner") !== -1 || orgData!.data!.permissions.indexOf("admin") !== -1;
+
     return <div css={listRoot}>
         <h1>Groups in {orgData!.data!.org.name}</h1>
         <input value={search} onChange={(val) => setSearch(val.target.value)} css={searchBar} placeholder="Enter search term..."></input>
-        <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/new")}>Create group</Button>
+        {hasPerm ? <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/new")}>Create group</Button> : null }
         {groupData!.data!.map((group: Record<any, any>) => (
             group.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 ? (
-                <div css={listItem} key={group.id}>
-                    <h2>{group.name} <Tag text={group.public ? "public" : "invite"} colour={group.public ? colours.greenSheen : colours.softRed}/></h2>
-                </div> 
+                <Link css={listItem} key={group.id} to={document.location.pathname + "/" + group.id}>
+                    <div>
+                        <h2>{group.name} <Tag text={group.public ? "public" : "invite"} colour={group.public ? colours.greenSheen : colours.softRed}/></h2>
+                    </div> 
+                </Link>
             ) : null
         ))}
     </div>
