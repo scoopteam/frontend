@@ -4,7 +4,7 @@ import { jsx } from "@emotion/core";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import colours from "../colours";
 import styles, { errorStyles } from "./formUtils";
-import { loginUser } from "../api/users";
+import { loginUser } from "../api/user";
 import userTokenStore from "../stores/token";
 
 import { useHistory } from "react-router-dom";

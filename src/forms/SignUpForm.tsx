@@ -8,7 +8,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import colours from "../colours";
 import styles, { errorStyles } from "./formUtils";
 
-import { createUser } from "../api/users";
+import { createUser } from "../api/user";
 import { humanizeFieldName } from "../utils";
 
 import userTokenStore from "../stores/token";

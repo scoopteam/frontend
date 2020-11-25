@@ -14,6 +14,7 @@ import global from "./global";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Suspense } from "react";
 import React from "react";
+import NewGroup from "./pages/organisations/groups/NewGroup";
 
 const queryCache = new QueryCache();
 
@@ -47,6 +48,10 @@ const ROUTES = [
   {
     path: "/orgs/:id",
     Component: DisplayOrganisation
+  },
+  {
+    path: "/orgs/:org_id/groups/new",
+    Component: NewGroup
   }
 ];
 

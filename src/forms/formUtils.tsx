@@ -1,5 +1,9 @@
-import { css } from "@emotion/core";
-import { FormikErrors, FormikTouched } from "formik";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
+import { FormikErrors, FormikTouched, Field, Formik } from "formik";
+
+import Toggle from "react-toggle";
+import "react-toggle/style.css";
 
 import colours from "../colours";
 
@@ -39,6 +43,12 @@ button {
     color: white;
     font-size: 1.5em;
     font-weight: 900;
+    cursor: pointer;
+}
+
+button[disabled] {
+    filter: brightness(70%);
+    cursor: default;
 }
 `
 
@@ -52,4 +62,8 @@ export function errorStyles(errors: FormikErrors<Record<string, string>>, touche
             box-shadow: 0 0 10px ${colours.olivine};
         `
     }
+}
+
+export function CheckToggle({ field, form, ...props}: { field: typeof Field, form: Record<any, any> }) {
+    return <Toggle css={{alignSelf: "center"}} name={field.name} onChange={(e) => form.setFieldValue(field.name, e.target.checked)}/>
 }

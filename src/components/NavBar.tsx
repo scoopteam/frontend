@@ -4,7 +4,7 @@ import React from "react";
 import { jsx, css } from "@emotion/core";
 
 import { useQuery } from "react-query";
-import { getCurrentUser } from "../api/users";
+import { getCurrentUser } from "../api/user";
 import { ServerResponse } from "../api";
 
 import colours from "../colours";
