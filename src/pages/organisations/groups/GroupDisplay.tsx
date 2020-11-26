@@ -3,7 +3,7 @@ import { jsx, css } from "@emotion/core";
 import { useState } from "react";
 
 import { useQuery, useQueryCache } from "react-query";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { ServerResponse } from "../../../api"
 import { deleteGroup, getGroup, joinGroup, leaveGroup } from "../../../api/group";
 import { getOrganisation } from "../../../api/organisation";
