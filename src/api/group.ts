@@ -84,3 +84,19 @@ export async function deleteGroup(
 
     return resp;
 }
+
+export async function bulkAdd(
+    orgID: string,
+    groupID: string,
+    emails: string[]
+): Promise<ServerResponse> {
+    let resp = await request({
+        path: `/org/${orgID}/group/${groupID}/bulk_add`,
+        method: "POST",
+        data: {
+            users: emails
+        }
+    });
+
+    return resp;
+}

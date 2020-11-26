@@ -3,7 +3,7 @@ import { jsx, css } from "@emotion/core";
 import { useState } from "react";
 
 import { useQuery, useQueryCache } from "react-query";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { ServerResponse } from "../../../api"
 import { deleteGroup, getGroup, joinGroup, leaveGroup } from "../../../api/group";
 import { getOrganisation } from "../../../api/organisation";
@@ -66,12 +66,15 @@ export default function DisplayGroup() {
             }}>Leave group</Button>}
 
             {isOwner ? (
-                <Button colour={colours.softRed} onClick={() => {
-                    deleteGroup(orgData!.data!.org.id, groupData!.data!.id).then(() => {
-                        queryCache.invalidateQueries(`organisation-group-${organisation_id}-${group_id}`);
-                        history.push(`/orgs/${organisation_id}/groups`);
-                    });
-                }}>Delete group</Button>
+                <div>
+                    <Button colour={colours.softRed} onClick={() => {
+                        deleteGroup(orgData!.data!.org.id, groupData!.data!.id).then(() => {
+                            queryCache.invalidateQueries(`organisation-group-${organisation_id}-${group_id}`);
+                            history.push(`/orgs/${organisation_id}/groups`);
+                        });
+                    }}>Delete group</Button>
+                    <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/invite")}>Add users</Button>
+                </div>
             ) : null}
         </div>
     );

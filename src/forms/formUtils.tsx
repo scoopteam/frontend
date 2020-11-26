@@ -24,13 +24,13 @@ span {
     font-weight: 900;
 };
 
-input, button {
+input, button, textarea {
     border: none;
     margin-bottom: 10px;
     margin-top: 5px;
 };
 
-input {
+input, textarea {
     padding: 10px;
     transition: box-shadow 500ms linear;
     outline: none;
