@@ -7,7 +7,7 @@ export default function Tag({ text, colour }: { text: string, colour: string}) {
     background-color: ${colour};
     color: white;
     padding: 5px;
-    font-size: 0.75em;
+    font-size: 0.5em;
     border-radius: 5px;
     vertical-align: middle;
     `;
