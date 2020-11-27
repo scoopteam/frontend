@@ -9,9 +9,11 @@ import RichTextEditor from 'react-rte';
 import { createPost } from "../api/post";
 import { useHistory, useParams } from "react-router-dom";
 import { humanizeFieldName } from "../utils";
+import { useQueryCache } from "react-query";
 
 
-export default function PostCraeteForm(props: Record<string, any>) {
+export default function PostCreateForm(props: Record<string, any>) {
+    const queryCache = useQueryCache();
     const history = useHistory();
     const { org_id, group_id } = useParams<{ org_id: string, group_id: string}>();
 
@@ -32,7 +34,7 @@ export default function PostCraeteForm(props: Record<string, any>) {
         onSubmit={(values, { setSubmitting, setFieldValue, setErrors }) => {
             createPost(org_id, group_id, values.title, editorState.toString("markdown")).then(() => {
                 setSubmitting(false);
-                history.push("/home");
+                queryCache.invalidateQueries("feedData").then(() => history.push("/home"))
             }).catch(error => {
                 if (error.isAxiosError) {
                     let errors: Record<string, string> = {};

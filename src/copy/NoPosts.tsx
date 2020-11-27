@@ -20,7 +20,7 @@ export default function NoPosts() {
         `}>
             <ImSleepy css={{fontSize: "5em"}}/>
             <h2>You're in!</h2>
-            <p>Your feed is empty right now because none of your organisations have made any posts!</p>
+            <p>Your feed is empty right now because none of your groups have made any posts!</p>
         </div>
     </div>
 }

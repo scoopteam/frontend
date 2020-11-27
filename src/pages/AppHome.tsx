@@ -7,17 +7,25 @@ import { useQuery } from "react-query";
 import { ServerResponse } from "../api";
 import { getUserOrganisations } from "../api/organisation";
 import NoOrganisations from "../copy/NoOrganisations";
+import { getPostFeed } from "../api/post";
+import Post, { PostData } from "../components/Post";
+import NoPosts from "../copy/NoPosts";
 
 const headerNameStyle = css`
 text-align: center;
 font-size: 3em;
 `
 
+const postListStyle = css`
+display: flex;
+flex-direction: column;
+`
+
 export default function AppHome() {
   const { isLoading, error, data } = useQuery<ServerResponse[], Error>(
     "feedData",
     () => {
-      return Promise.all([getCurrentUser(), getUserOrganisations()])
+      return Promise.all([getCurrentUser(), getUserOrganisations(), getPostFeed()])
     }
   );
 
@@ -41,13 +49,20 @@ export default function AppHome() {
     );
   }
 
-  const [userData, userOrgs] = data!;
+  const [userData, userOrgs, postFeed] = data!;
 
   if (data) {
     return (
       <div>
         <h1 css={headerNameStyle}>Welcome back {userData.data!.full_name}</h1>
         {userOrgs.data!.length === 0 ? <NoOrganisations/> : null }
+        {postFeed.data!.length === 0 ? <NoPosts/> : null }
+
+        <div css={postListStyle}>
+          {postFeed.data!.map((post: PostData) => (
+            <Post post={post} key={post.id}/>
+          ))}
+        </div>
       </div>
     );
   }
