@@ -19,7 +19,7 @@ label {
     font-size: 1.25em;
 }
 
-span {
+span:not(.text-area > *)::not(.text-area) {
     color: ${colours.softRed};
     font-weight: 900;
 };

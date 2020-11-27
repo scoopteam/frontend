@@ -74,6 +74,7 @@ export default function DisplayGroup() {
                         });
                     }}>Delete group</Button>
                     <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/invite")}>Add users</Button>
+                    <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/post")}>Write post</Button>
                 </div>
             ) : null}
         </div>
