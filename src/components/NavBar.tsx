@@ -1,6 +1,5 @@
 /** @jsxFrag React.Fragment */
 /** @jsx jsx */
-import React from "react";
 import { jsx, css } from "@emotion/core";
 
 import { useQuery } from "react-query";
@@ -18,6 +17,10 @@ margin: 0;
 margin-left: 20px;
 font-size: 1.5em;
 
+@media (max-width: 500px) {
+    margin-left: 0px;
+}
+
 &:hover {
     text-decoration: none;
 }
@@ -25,6 +28,9 @@ font-size: 1.5em;
 
 const dividerStyle = css`
 flex-grow: 1;
+@media (max-width: 500px) {
+    flex-grow: 0;
+};
 `;
 
 const rightNavItem = css`
@@ -32,14 +38,21 @@ margin: 0;
 color: white;
 padding: 0;
 margin-right: 50px;
+
+text-align: center;
+
+@media (max-width: 500px) {
+    margin-right: 50px;
+    margin-left: 50px;
+};
 `
 
 // Items to display only to logged in users
 function LoggedInItems() {
-    return <React.Fragment>
+    return <div css={{display: "flex"}}>
         <Link css={rightNavItem} to={"/home"}><h2>My feed</h2></Link>
         <Link css={rightNavItem} to={"/orgs"}><h2>Organisations</h2></Link>
-    </React.Fragment>
+    </div>
 }
 
 function NavBar() {
@@ -63,6 +76,12 @@ function NavBar() {
         display: flex;
         vertical-align: middle;
         align-items: center;
+        flex-wrap: wrap;
+
+        @media (max-width: 500px) {
+            justify-content: center;
+            text-align: center;
+        };
 
         * {
             vertical-align: middle;
@@ -71,7 +90,9 @@ function NavBar() {
         <Link css={leftNavItem} to={"/"}><h1 css={{padding: 0, margin: 0}}>Scoop</h1></Link>
         <span css={dividerStyle}></span>
         {/* If the user is logged in, display the logged in component */}
-        {renderLoggedIn ? <LoggedInItems /> : null}
+        <div>
+            {renderLoggedIn ? <LoggedInItems /> : null}
+        </div>
     </div>
 }
 
