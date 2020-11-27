@@ -11,6 +11,12 @@ import Modal from "react-modal";
 import LoginForm from "../forms/LoginForm";
 import SignUpForm from "../forms/SignUpForm";
 
+import { useQuery } from "react-query";
+
+import { ServerResponse } from "../api";
+import { getCurrentUser } from "../api/user";
+import { useHistory } from "react-router-dom";
+
 const modalStyles = {
     content : {
         top                   : '50%',
@@ -61,6 +67,13 @@ const buttonStyles = css`
 `;
 
 function LandingPage() {
+    const { data } = useQuery<ServerResponse, Error>(
+        "userData",
+        () => getCurrentUser()
+    );
+
+    const history = useHistory();
+
     const [modalOpen, setModalOpen] = useState(false);
     const [formMode, setFormMode] = useState("login");
 
@@ -101,15 +114,25 @@ function LandingPage() {
                 `}>
                     Scoop is the social media platform for building a community within education.
                 </h3>
-                <div css={buttonStyles}>
-                    <button onClick={() => openModal("sign_up")}>
-                        Sign up
-                    </button>
+                {data ?
+                (
+                    <div css={buttonStyles}>
+                        <button onClick={() => openModal("sign_up")}>
+                            Sign up
+                        </button>
 
-                    <button onClick={() => openModal("login")}>
-                        Login
-                    </button>
-                </div>
+                        <button onClick={() => openModal("login")}>
+                            Login
+                        </button>
+                    </div>
+                ) :
+                (
+                    <div css={buttonStyles}>
+                        <button onClick={() => history.push("/home")}>
+                            View feed
+                        </button>
+                    </div>
+                )}
             </div>
             <div css={css`transform: translateY(5px)`}>
                 <Wave
