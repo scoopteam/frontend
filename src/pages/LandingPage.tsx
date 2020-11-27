@@ -67,6 +67,7 @@ const buttonStyles = css`
 `;
 
 function LandingPage() {
+    // If the user is logged in we show a slightly different home page.
     const { data } = useQuery<ServerResponse, Error>(
         "userData",
         () => getCurrentUser()
