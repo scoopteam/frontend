@@ -114,7 +114,7 @@ function LandingPage() {
                 `}>
                     Scoop is the social media platform for building a community within education.
                 </h3>
-                {data ?
+                {!data ?
                 (
                     <div css={buttonStyles}>
                         <button onClick={() => openModal("sign_up")}>
