@@ -21,7 +21,7 @@ export default function PostCreateForm(props: Record<string, any>) {
 
     return <div>
         <Formik
-        initialValues={{ title: '' }}
+        initialValues={{ title: '', content: '' }}
         validate={values => {
             const errors: Record<string, string> = {};
 
@@ -31,7 +31,7 @@ export default function PostCreateForm(props: Record<string, any>) {
 
             return errors;
         }}
-        onSubmit={(values, { setSubmitting, setFieldValue, setErrors }) => {
+        onSubmit={(values, { setSubmitting, setErrors }) => {
             createPost(org_id, group_id, values.title, editorState.toString("markdown")).then(() => {
                 setSubmitting(false);
                 queryCache.invalidateQueries("feedData").then(() => history.push("/home"))
@@ -49,7 +49,7 @@ export default function PostCreateForm(props: Record<string, any>) {
             })
         }}
     >
-        {({ isSubmitting, errors, touched }) => (
+        {({ isSubmitting, errors, touched, setFieldValue, setTouched }) => (
             
             <div css={css`
             justify-content: center;
@@ -66,7 +66,12 @@ export default function PostCreateForm(props: Record<string, any>) {
                     <ErrorMessage name="title" component="span" />
 
                     {/* Rich text editor component for markdown editing */}
-                    <RichTextEditor value={editorState} onChange={setEditorState} className="text-editor" />
+                    <RichTextEditor css={errorStyles(errors, touched, "content")} value={editorState} onChange={(value) => {
+                        setEditorState(value)
+                        setFieldValue("content", value.toString("markdown"))
+                        setTouched({ content: true })
+                    }} className="text-editor" />
+                    <ErrorMessage name="content" component="span" />
                     <button type="submit" disabled={isSubmitting}>
                         Publish post
                     </button>

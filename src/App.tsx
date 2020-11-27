@@ -84,7 +84,7 @@ function App() {
         <Global styles={global} />
         <Router>
           {/* Display the navbar */}
-          <NavBar />
+          <NavBar css={{height: "300px !important"}} />
           <div css={{ flex: "1 0 auto" }}>
             <Switch>
               {ROUTES.map(({ Component, path }) => (
