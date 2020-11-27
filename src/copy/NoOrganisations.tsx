@@ -4,6 +4,8 @@ import { jsx, css } from "@emotion/core";
 import { BiSad } from "react-icons/bi";
 import colours from "../colours";
 
+/* Copy for when a user is not in any organisations */
+
 export default function NoOrganisations() {
     return <div css={css`
         display: flex;

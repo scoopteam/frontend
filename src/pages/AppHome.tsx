@@ -22,6 +22,7 @@ flex-direction: column;
 `
 
 export default function AppHome() {
+  // Fetch the user, their organisations and the list of posts
   const { isLoading, error, data } = useQuery<ServerResponse[], Error>(
     "feedData",
     () => {
@@ -55,9 +56,11 @@ export default function AppHome() {
     return (
       <div>
         <h1 css={headerNameStyle}>Welcome back {userData.data!.full_name}</h1>
+        {/* Decide whether to display copy */}
         {userOrgs.data!.length === 0 ? <NoOrganisations/> : null }
         {postFeed.data!.length === 0 ? <NoPosts/> : null }
 
+        {/* For each post create a post component */}
         <div css={postListStyle}>
           {postFeed.data!.map((post: PostData) => (
             <Post post={post} key={post.id}/>

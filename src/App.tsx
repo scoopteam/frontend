@@ -17,6 +17,7 @@ import React from "react";
 
 const queryCache = new QueryCache();
 
+/* Lazy load all routes */
 const AppHome = React.lazy(() => import("./pages/AppHome"));
 const NewOrg = React.lazy(() => import("./pages/organisations/NewOrganisation"));
 const UserOrganisations = React.lazy(() => import("./pages/organisations/UserOrganisations"));
@@ -28,6 +29,7 @@ const DisplayGroup = React.lazy(() => import("./pages/organisations/groups/Group
 const BulkAdd = React.lazy(() => import("./pages/organisations/groups/BulkAdd"));
 const CreatePost = React.lazy(() => import("./pages/organisations/groups/posts/PostCreate"));
 
+// Define all the routes and which components they should display.
 const ROUTES = [
   {
     path: "/",
@@ -78,13 +80,17 @@ const ROUTES = [
 function App() {
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
+        {/* Define a query cache boundary above, and global styles below */}
         <Global styles={global} />
         <Router>
+          {/* Display the navbar */}
           <NavBar />
           <div css={{ flex: "1 0 auto" }}>
             <Switch>
               {ROUTES.map(({ Component, path }) => (
+                // For each route defined above, create a new route definition in react-router
                 <Route path={path} key={path} exact={true}>
+                  {/* Use suspense to await loading, if it is not loaded fall back to a "Loading..." text */}
                   <Suspense fallback={<h1 css={{ textAlign: "center" }}>Loading...</h1>}>
                     <Component />
                   </Suspense>
@@ -93,6 +99,7 @@ function App() {
             </Switch>
           </div>
           <div css={{ flexShrink: 0 }}>
+            {/* Display the footer */}
             <Footer />
           </div>
         </Router>

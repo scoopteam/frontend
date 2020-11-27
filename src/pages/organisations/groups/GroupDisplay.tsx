@@ -12,10 +12,14 @@ import Button from "../../../components/Button";
 
 export default function DisplayGroup() {
     const history = useHistory();
+    // Create a state object to force rerender
     const [, setRerender] = useState<number>();
+
     const queryCache = useQueryCache();
+    // Fetch the org & group ID from the URL
     const { organisation_id, group_id } = useParams<{ organisation_id: string, group_id: string }>();
 
+    // Fetch the organisation and group data
     const { isLoading, error, data } = useQuery<ServerResponse[], Error>(
         `organisation-group-${organisation_id}-${group_id}`,
         () => Promise.all([getOrganisation(organisation_id), getGroup(organisation_id ,group_id)])
@@ -31,6 +35,7 @@ export default function DisplayGroup() {
 
     const [orgData, groupData] = data!;
 
+    // Check if the user can see the delete group controls
     const isOwner = orgData!.data!.permissions.indexOf("owner") !== -1 || orgData!.data!.permissions.indexOf("admin") !== -1;
 
     return (
@@ -56,6 +61,7 @@ export default function DisplayGroup() {
                 }}>Join group</Button>
             </div> : <Button colour={colours.softRed} onClick={() => {
                 leaveGroup(orgData!.data!.org.id, groupData!.data!.id).then(() => {
+                    // Invalidate the query for user groups if it is deleted
                     queryCache.invalidateQueries(`organisation-group-${organisation_id}-${group_id}`);
                     if (!groupData!.data!.public && !isOwner) {
                         history.push(`/orgs/${organisation_id}/groups`);
@@ -68,6 +74,7 @@ export default function DisplayGroup() {
             {isOwner ? (
                 <div>
                     <Button colour={colours.softRed} onClick={() => {
+                        // Delete the group and clear the queries.
                         deleteGroup(orgData!.data!.org.id, groupData!.data!.id).then(() => {
                             queryCache.invalidateQueries(`organisation-group-${organisation_id}-${group_id}`);
                             history.push(`/orgs/${organisation_id}/groups`);

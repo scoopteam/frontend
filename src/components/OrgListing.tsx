@@ -5,6 +5,8 @@ import { UserOrg } from "../api/organisation";
 
 import colours from "../colours";
 
+
+/** Component that renders an organisation in the list of organisations a member is in */
 export default function OrgListing({ orgMembership }: { orgMembership: UserOrg }) {
     return <div css={css`
         background-color: ${colours.metallicSeaweed};

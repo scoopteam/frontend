@@ -40,6 +40,7 @@ margin-top: 20px;
 `
 
 export default function UserOrganisations() {
+    // Fetch the list of organisations
     const { isLoading, error, data } = useQuery<ServerResponse, Error>(
         "userOrganisations",
         () => getUserOrganisations()
@@ -77,6 +78,7 @@ export default function UserOrganisations() {
                 `}>
                     {data.data!.map((orgMembership: UserOrg) => (
                         <Link to={`/orgs/${orgMembership.org.id}`} css={{color: "white"}}>
+                            {/* Create a new org listing component for each organisation the user can see */}
                             <OrgListing orgMembership={orgMembership} key={orgMembership.org.id} />
                         </Link>
                     ))}

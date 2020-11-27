@@ -54,12 +54,14 @@ outline: none;
 `;
 
 export default function GroupList() {
+    // Create state for the search input
     const [search, setSearch] = useState("");
 
     const history = useHistory();
 
     const { org_id } = useParams<{ org_id: string }>();
 
+    // Create a query for the organisation and all the groups within
     const { isLoading, error, data } = useQuery<ServerResponse[], Error>(
         `organisation-groups-${org_id}`,
         () => Promise.all([getOrganisation(org_id), getAllGroups(org_id)])
@@ -78,13 +80,16 @@ export default function GroupList() {
 
     const [orgData, groupData] = data!;
 
+    // Check if the user can create groups
     const hasPerm = orgData!.data!.permissions.indexOf("owner") !== -1 || orgData!.data!.permissions.indexOf("admin") !== -1;
 
+    // List the groups in the organisation
     return <div css={listRoot}>
         <h1>Groups in {orgData!.data!.org.name}</h1>
         <input value={search} onChange={(val) => setSearch(val.target.value)} css={searchBar} placeholder="Enter search term..."></input>
         {hasPerm ? <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/new")}>Create group</Button> : null }
         {groupData!.data!.map((group: Record<any, any>) => (
+            // Only return groups that have the search query as a fragment.
             group.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 ? (
                 <Link css={listItem} key={group.id} to={document.location.pathname + "/" + group.id}>
                     <div>

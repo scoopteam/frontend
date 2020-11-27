@@ -65,6 +65,7 @@ export default function PostCreateForm(props: Record<string, any>) {
                     <Field css={errorStyles(errors, touched, "title")} type="text" name="title" placeholder="What is the answer to life, the universe and everything?" />
                     <ErrorMessage name="title" component="span" />
 
+                    {/* Rich text editor component for markdown editing */}
                     <RichTextEditor value={editorState} onChange={setEditorState} className="text-editor" />
                     <button type="submit" disabled={isSubmitting}>
                         Publish post

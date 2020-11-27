@@ -4,6 +4,8 @@ import { jsx, css } from "@emotion/core";
 import { ImSleepy } from "react-icons/im";
 import colours from "../colours";
 
+/* Copy for when a user has no posts on their feed */
+
 export default function NoPosts() {
     return <div css={css`
         display: flex;

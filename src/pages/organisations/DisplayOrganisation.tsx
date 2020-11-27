@@ -22,6 +22,7 @@ export default function DisplayOrganisation() {
     const queryCache = useQueryCache();
     const { id } = useParams<{ id: string }>();
 
+    // Fetch the organisation and groups
     const { isLoading, error, data } = useQuery<ServerResponse[], Error>(
         `organisation-groups-${id}`,
         () => Promise.all([getOrganisation(id), getAllGroups(id)])
@@ -37,6 +38,7 @@ export default function DisplayOrganisation() {
 
     const [orgData, groupData] = data!;
 
+    // Check if the user is the owner of the organisation to decide whether to delete or leave
     const isOwner = orgData!.data!.permissions.indexOf("owner") !== -1;
 
     return (

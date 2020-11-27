@@ -1,5 +1,7 @@
 import { createStore } from "redux";
 
+/* Store for retaining the current users token */
+
 interface UserTokenAction {
   type: string;
   payload: string;

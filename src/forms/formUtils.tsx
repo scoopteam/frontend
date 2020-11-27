@@ -7,6 +7,8 @@ import "react-toggle/style.css";
 
 import colours from "../colours";
 
+/* Utilities for working with forms */
+
 export default css`
 display: flex;
 flex-direction: column;
@@ -54,6 +56,7 @@ button[disabled] {
 }
 `
 
+// Show fields differently if there is a problem in them
 export function errorStyles(errors: FormikErrors<Record<string, string>>, touched: FormikTouched<Record<string, string>>, field: string) {
     if (Object.keys(errors).indexOf(field) !== -1 && Object.keys(touched).indexOf(field) !== -1) {
         return css`
@@ -66,6 +69,7 @@ export function errorStyles(errors: FormikErrors<Record<string, string>>, touche
     }
 }
 
+// A checkbox selector with more visual feedback and animation
 export function CheckToggle({ field, form, ...props}: { field: typeof Field, form: Record<any, any> }) {
     return <Toggle css={{alignSelf: "center", margin: "10px"}} name={field.name} onChange={(e) => form.setFieldValue(field.name, e.target.checked)}/>
 }

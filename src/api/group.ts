@@ -1,11 +1,16 @@
 import { request, ServerResponse } from ".";
 
+// Structure for creating groups
 interface CreateGroupData {
+    // Group name
     name: string,
+    // Whether the group should be public
     public: boolean,
+    // Whether users should automatically join the group when they join the organisation
     auto_subscribe: boolean
 }
 
+// Create a group with the provided parameters
 export async function createGroup(
     orgID: string,
     data: CreateGroupData
@@ -19,6 +24,7 @@ export async function createGroup(
     return resp;
 }
 
+// Get all the user groups
 export async function getAllGroups(
     orgID: string
 ): Promise<ServerResponse> {
@@ -30,6 +36,7 @@ export async function getAllGroups(
     return resp;
 }
 
+// Get a group by ID
 export async function getGroup(
     orgID: string,
     groupID: string
@@ -42,7 +49,7 @@ export async function getGroup(
     return resp;
 }
 
-
+// Join a group
 export async function joinGroup(
     orgID: string,
     groupID: string
@@ -55,6 +62,7 @@ export async function joinGroup(
     return resp;
 }
 
+// Leave a group
 export async function leaveGroup(
     orgID: string,
     groupID: string
@@ -70,6 +78,7 @@ export async function leaveGroup(
     return resp;
 }
 
+// Delete a group
 export async function deleteGroup(
     orgID: string,
     groupID: string
@@ -85,6 +94,7 @@ export async function deleteGroup(
     return resp;
 }
 
+// Call the bulk add endpoint with a list of emails
 export async function bulkAdd(
     orgID: string,
     groupID: string,

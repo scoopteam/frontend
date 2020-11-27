@@ -1,5 +1,6 @@
 import { request, ServerResponse } from ".";
 
+// Create a post with the provided parameters
 export async function createPost(
     orgID: string,
     groupID: string,
@@ -18,6 +19,7 @@ export async function createPost(
     return resp;
 }
 
+// Fetch the posts on the users homepage
 export async function getPostFeed(): Promise<ServerResponse> {
     let resp = await request({
         path: `/user/feed`,

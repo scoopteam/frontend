@@ -10,6 +10,7 @@ import { ServerResponse } from "../api";
 import colours from "../colours";
 import { Link } from "react-router-dom";
 
+/* Various styles for navbar components */
 const leftNavItem = css`
 color: white;
 padding: 0;
@@ -33,6 +34,7 @@ padding: 0;
 margin-right: 50px;
 `
 
+// Items to display only to logged in users
 function LoggedInItems() {
     return <React.Fragment>
         <Link css={rightNavItem} to={"/home"}><h2>My feed</h2></Link>
@@ -41,6 +43,7 @@ function LoggedInItems() {
 }
 
 function NavBar() {
+    // Fetch the logged in user and cache it
     const { data } = useQuery<ServerResponse, Error>(
         "userData",
         () => getCurrentUser()
@@ -67,6 +70,7 @@ function NavBar() {
     `}>
         <Link css={leftNavItem} to={"/"}><h1 css={{padding: 0, margin: 0}}>Scoop</h1></Link>
         <span css={dividerStyle}></span>
+        {/* If the user is logged in, display the logged in component */}
         {renderLoggedIn ? <LoggedInItems /> : null}
     </div>
 }

@@ -4,7 +4,8 @@ import { jsx, css } from "@emotion/core";
 
 import colours from "../colours";
 
-function NavBar() {
+// Footer component with copyright and contact email
+function Footer() {
     return <div css={css`
         background-color: ${colours.greenSheen};
         margin-top: 0px;
@@ -18,6 +19,7 @@ function NavBar() {
             margin: 0;
             margin-left: 20px;
         `}>&copy; Joseph Banks {(new Date()).getFullYear()}</h2>
+        {/* Add a central padding */}
         <p css={{flexGrow: 1}}></p>
         <h2 css={css`
             padding: 0;
@@ -28,4 +30,4 @@ function NavBar() {
     </div>
 }
 
-export default NavBar;
+export default Footer;

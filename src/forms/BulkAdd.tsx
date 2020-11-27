@@ -9,14 +9,17 @@ import { bulkAdd } from "../api/group";
 import { humanizeFieldName } from "../utils";
 import { useState } from "react";
 
+// Form for bulk adding users
 
 export default function BulkAddForm(props: Record<string, any>) {
+    // Fetch the organisation and group ID from the URL
     const { org_id, group_id }: { org_id: string, group_id: string } = useParams();
 
+    // Use the history for redireciton later
     const history = useHistory();
 
+    // Create some state objects for rendering status of the bulk insertion
     const [message, setMessage] = useState<string>();
-
     const [failed, setFailed] = useState<string[]>([]);
 
     return <div css={css`
@@ -61,10 +64,12 @@ export default function BulkAddForm(props: Record<string, any>) {
             }}
             onSubmit={(values, { setSubmitting, setErrors }) => {
                 bulkAdd(org_id, group_id, values.users.split("\n")).then(result => {
+                    // Operation succeeded, display status to the user
                     setSubmitting(false);
                     setMessage(`Successfully added ${result.data!.added.length}`)
                     setFailed(result.data!.failed);
                 }).catch(error => {
+                    // Error occured, display it for the user
                     if (error.isAxiosError) {
                         let errors: Record<string, string> = {};
 
@@ -81,7 +86,8 @@ export default function BulkAddForm(props: Record<string, any>) {
             {({ isSubmitting, errors, touched }) => (
                 <div>
                     <Form css={styles}>
-                        <label>User emails (separated by a newline)</label>
+                        <label>User emails (separated by a newline, case sensitive)</label>
+                        {/* Textarea for email input */}
                         <Field css={errorStyles(errors, touched, "users")} component="textarea" type="textarea" name="users" placeholder="joe@myscoop.dev" />
                         <ErrorMessage name="users" component="span" />
 
