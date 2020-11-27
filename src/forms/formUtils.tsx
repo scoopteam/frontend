@@ -71,5 +71,5 @@ export function errorStyles(errors: FormikErrors<Record<string, string>>, touche
 
 // A checkbox selector with more visual feedback and animation
 export function CheckToggle({ field, form, ...props}: { field: typeof Field, form: Record<any, any> }) {
-    return <Toggle css={{alignSelf: "center", margin: "10px"}} name={field.name} onChange={(e) => form.setFieldValue(field.name, e.target.checked)}/>
+    return <Toggle name={field.name} onChange={(e) => form.setFieldValue(field.name, e.target.checked)}/>
 }

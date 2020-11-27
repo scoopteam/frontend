@@ -65,13 +65,19 @@ export default function NewOrgForm(props: Record<string, any>) {
                         <Field css={errorStyles(errors, touched, "name")} type="text" name="name" placeholder="Cooking club..." />
                         <ErrorMessage name="name" component="span" />
 
-                        <label>Public group (joinable by anyone inside the organisation)</label>
-                        <Field css={errorStyles(errors, touched, "public")} component={CheckToggle} name="public" />
-                        <ErrorMessage name="public" component="span" />
+                        <div css={{margin: "10px", width: "75%"}}>
+                            <label>Public group (joinable by anyone inside the organisation)</label>
+                            <span css={{flexGrow: 1}}></span>
+                            <Field css={errorStyles(errors, touched, "public")} component={CheckToggle} name="public" />
+                            <ErrorMessage name="public" component="span" />
+                        </div>
 
-                        <label>Auto-subscribe (new users automatically become a member of this group)</label>
-                        <Field css={errorStyles(errors, touched, "auto_subscribe")} component={CheckToggle} name="auto_subscribe" />
-                        <ErrorMessage name="auto_subscribe" component="span" />
+                        <div css={{margin: "10px", width: "75%"}}>
+                            <label>Auto-subscribe (new users automatically become a member of this group)</label>
+                            <span css={{flexGrow: 1}}></span>
+                            <Field css={errorStyles(errors, touched, "auto_subscribe")} component={CheckToggle} name="auto_subscribe" />
+                            <ErrorMessage name="auto_subscribe" component="span" />
+                        </div>
 
                         <button type="submit" disabled={isSubmitting}>
                             Create group
