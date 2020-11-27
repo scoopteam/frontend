@@ -84,8 +84,8 @@ function App() {
         <Global styles={global} />
         <Router>
           {/* Display the navbar */}
-          <NavBar css={{height: "300px !important"}} />
           <div css={{ flex: "1 0 auto" }}>
+            <NavBar/>
             <Switch>
               {ROUTES.map(({ Component, path }) => (
                 // For each route defined above, create a new route definition in react-router
