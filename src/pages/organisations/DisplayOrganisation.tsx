@@ -41,6 +41,8 @@ export default function DisplayOrganisation() {
     // Check if the user is the owner of the organisation to decide whether to delete or leave
     const isOwner = orgData!.data!.permissions.indexOf("owner") !== -1;
 
+    const isAdmin = isOwner || orgData!.data!.permissions.indexOf("admin") !== -1;
+
     return (
         <div css={css`
             display: flex;
@@ -71,6 +73,7 @@ export default function DisplayOrganisation() {
             : null}
 
             <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/groups")}>View groups</Button>
+            {isAdmin ? <Button colour={colours.greenSheen} onClick={() => history.push(document.location.pathname + "/groups/new")}>Create group</Button> : null}
             <Button colour={colours.softRed} onClick={() => deleteOrgMembership(orgData!.data!.org.id, history, queryCache)}>{isOwner ? "Delete organisation" : "Leave organisation"}</Button>
         </div>
     );
